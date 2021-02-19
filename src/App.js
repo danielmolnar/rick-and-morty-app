@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import Cards from './Cards.js';
+import styled from 'styled-components';
+// import Button from './Button';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import logo from './logo.png';
 
 function App() {
+  const [cardInfos, setCardInfos] = useState([]);
+
+  useEffect(() => {
+    fetch('https://rickandmortyapi.com/api/character')
+      .then((result) => result.json())
+      .then((items) => {
+        const characters = items.results.map((item) => ({
+          name: item.name,
+          species: item.species,
+          origin: item.origin.name,
+          image: item.image,
+        }));
+        setCardInfos(characters);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper className="App">
+      <Logo></Logo>
+      {cardInfos.map(({ name, species, origin, image }) => (
+        <Cards name={name} species={species} origin={origin} image={image} />
+      ))}
+    </Wrapper>
   );
 }
 
 export default App;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin-top: 2rem;
+  gap: 1rem;
+`;
+
+const Logo = styled.header`
+  background-image: url(${logo});
+`;
