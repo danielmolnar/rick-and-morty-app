@@ -3,7 +3,6 @@ import styled from 'styled-components';
 // import Button from './Button';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import logo from './logo.png';
 
 function App() {
   const [cardInfos, setCardInfos] = useState([]);
@@ -24,7 +23,6 @@ function App() {
 
   return (
     <Wrapper className="App">
-      <Logo></Logo>
       {cardInfos.map(({ name, species, origin, image }) => (
         <Cards name={name} species={species} origin={origin} image={image} />
       ))}
@@ -41,8 +39,4 @@ const Wrapper = styled.div`
   height: 100vh;
   margin-top: 2rem;
   gap: 1rem;
-`;
-
-const Logo = styled.header`
-  background-image: url(${logo});
 `;

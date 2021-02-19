@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import card_background from './card_background.jpg';
 // import schwifty from './font/schwifty.ttf';
 
 export default function Cards({ name, species, origin, image }) {
@@ -17,8 +18,9 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: black solid 1px;
-  background-color: hsl(0, 100%, 0%, 80%);
+  // border: black solid 1px;
+  background-image: url(${card_background});
+  background-size: cover;
   color: white;
   border-radius: 10px;
   padding: 0.7rem;
