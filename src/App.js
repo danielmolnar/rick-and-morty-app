@@ -5,6 +5,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import header from '../src/logo.png';
 import Search from './Search';
+import axios from 'axios';
 
 function App() {
   const [cardInfos, setCardInfos] = useState([]);
@@ -14,19 +15,38 @@ function App() {
   //  Query in Fetch einfügen und neuen useState anlegen
 
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/?species=${query}`)
-      .then((result) => result.json())
-      .then((items) => {
-        const characters = items.results.map((item) => ({
-          id: item.id,
-          name: item.name,
-          species: item.species,
-          origin: item.origin.name,
-          image: item.image,
-        }));
-        setCardInfos(characters);
-      });
+    const fetchItems = async () => {
+      const result = await axios(
+        `https://rickandmortyapi.com/api/character/?species=${query}`
+      );
+      const characters = result.data.results.map((item) => ({
+        id: item.id,
+        name: item.name,
+        species: item.species,
+        origin: item.origin.name,
+        image: item.image,
+      }));
+      console.log(result.data.results);
+      setCardInfos(characters);
+    };
+    fetchItems();
   }, [query]);
+
+  // useEffect(() => {
+  //   fetch(`https://rickandmortyapi.com/api/character/?species=${query}`)
+  //     .then((result) => result.json())
+  //     .then((items) => {
+  //       const characters = items.results.map((item) => ({
+  //         id: item.id,
+  //         name: item.name,
+  //         species: item.species,
+  //         origin: item.origin.name,
+  //         image: item.image,
+  //       }));
+  //       setCardInfos(characters);
+  //     });
+  // }, [query]);
+
   // Wenn der Wert query geändert wird, wird der useEffect ausgelöst
   function showAll() {
     setIsHuman([]);
