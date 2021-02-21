@@ -3,9 +3,8 @@ import wallpaper from './wallpaper.jpg';
 import schwifty from './font/schwifty.ttf';
 export default createGlobalStyle`
 
-*{
-  box-sizing: border-box;
- 
+* {
+  box-sizing: border-box; 
 }
 
 
