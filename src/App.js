@@ -4,14 +4,17 @@ import Button from './Button';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import header from '../src/logo.png';
+import Search from './Search';
 
 function App() {
   const [cardInfos, setCardInfos] = useState([]);
   const [isHuman, setIsHuman] = useState([]);
   const [isAlien, setIsAlien] = useState([]);
+  const [query, setQuery] = useState('');
+  //  Query in Fetch einfügen und neuen useState anlegen
 
   useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character')
+    fetch(`https://rickandmortyapi.com/api/character/?species=${query}`)
       .then((result) => result.json())
       .then((items) => {
         const characters = items.results.map((item) => ({
@@ -23,8 +26,8 @@ function App() {
         }));
         setCardInfos(characters);
       });
-  }, []);
-
+  }, [query]);
+  // Wenn der Wert query geändert wird, wird der useEffect ausgelöst
   function showAll() {
     setIsHuman([]);
     setIsAlien([]);
@@ -36,6 +39,7 @@ function App() {
       (currywurst) => currywurst.species === 'Human'
     );
     setIsHuman(humans);
+    setIsAlien([]);
   }
 
   function showAliens() {
@@ -43,22 +47,28 @@ function App() {
       (currywurst) => currywurst.species === 'Alien'
     );
     setIsAlien(alien);
-
-    // console.log(alien);
+    setIsHuman([]);
   }
 
   let data;
+  let oldAlienData = cardInfos.filter(
+    (currywurst) => currywurst.species === 'Alien'
+  );
+  let oldHumanData = cardInfos.filter(
+    (currywurst) => currywurst.species === 'Human'
+  );
 
-  if (isHuman.length > isAlien.length) {
+  if (isHuman.length > 0) {
     data = isHuman;
-  } else if (isHuman.length < isAlien.length) {
+  } else if (isAlien.length > 0) {
     data = isAlien;
+  } else if (isHuman.length === 0 && isAlien.length !== 0) {
+    data = oldHumanData;
+  } else if (isAlien.length === 0 && isHuman.length !== 0) {
+    data = oldAlienData;
   } else {
     data = cardInfos;
   }
-
-  // let data = isHuman.length > 0 ? isHuman : cardInfos;
-  // data = isAlien.length > 0 ? isAlien : cardInfos;
 
   return (
     <>
@@ -67,6 +77,8 @@ function App() {
       </Header>
 
       <Wrapper className="App">
+        <Search getQuery={(q) => setQuery(q)} />
+        {/*  8. q wird zur Search.js durchgereicht und ruft setQuery auf App.js ebene auf */}
         <Button text="Filter Humans" currywurstFunktion={showHumans} />
         <Button text="Filter Aliens" currywurstFunktion={showAliens} />
         <Button text="Show All" currywurstFunktion={showAll} />
