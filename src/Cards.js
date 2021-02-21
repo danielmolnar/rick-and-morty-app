@@ -1,15 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
 import card_background from './card_background.jpg';
+import Button from './Button';
+import { useState } from 'react';
+import CharDetails from './CharDetails';
 // import schwifty from './font/schwifty.ttf';
 
-export default function Cards({ name, species, origin, image }) {
+export default function Cards({
+  name,
+  species,
+  origin,
+  image,
+  text,
+  currywurstFunktion,
+}) {
+  const [isShowingDetails, setIsShowingDetails] = useState(false);
+
+  function toggleDetails() {
+    setIsShowingDetails(!isShowingDetails);
+    console.log('I was clicked');
+  }
+
   return (
     <CardWrapper>
-      <img src={image} alt="this is {name}" />
-      <h2>{name}</h2>
-      <p>{species}</p>
-      <p>{origin}</p>
+      <ImageWrapper src={image} alt="this is {name}" />
+      <TitleWrapper>
+        <h2>{name}</h2>
+        <CharDetails
+          species={species}
+          origin={origin}
+          details={isShowingDetails}
+        />
+        <Button currywurstFunktion={toggleDetails} text="Show more" />
+      </TitleWrapper>
     </CardWrapper>
   );
 }
@@ -23,7 +46,22 @@ const CardWrapper = styled.div`
   background-size: cover;
   color: white;
   border-radius: 10px;
-  padding: 0.7rem;
+  padding: 1rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+`;
+
+const ImageWrapper = styled.img`
+  border-radius: 10px;
+`;
+
+const TitleWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
 `;
 
 // const Headline = styled.h2`
