@@ -47,6 +47,9 @@ const CardWrapper = styled.div`
   color: white;
   border-radius: 10px;
   padding: 1rem;
+  /* margin-left: 10%;
+  margin-right: 10%; */
+  width: 350px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 `;
 

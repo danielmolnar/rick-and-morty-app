@@ -24,7 +24,13 @@ body {
   }
 
   h2 {
-    font-family: get-schwifty, Helvetica, Arial, sans-serif;;
+    font-family: sans-serif;
+    font-size: 2rem;
   }
+
+p {
+  font-size: 1rem;
+}
+
 
 `;

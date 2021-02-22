@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const fetchItems = async () => {
       const result = await axios(
-        `https://rickandmortyapi.com/api/character/?species=${query}`
+        `https://rickandmortyapi.com/api/character/?name=${query}`
       );
       const characters = result.data.results.map((item) => ({
         id: item.id,
@@ -99,9 +99,11 @@ function App() {
       <Wrapper className="App">
         <Search getQuery={(q) => setQuery(q)} />
         {/*  8. q wird zur Search.js durchgereicht und ruft setQuery auf App.js ebene auf */}
-        <Button text="Filter Humans" currywurstFunktion={showHumans} />
-        <Button text="Filter Aliens" currywurstFunktion={showAliens} />
-        <Button text="Show All" currywurstFunktion={showAll} />
+        <ButtonWrapper>
+          <Button text="Filter Humans" currywurstFunktion={showHumans} />
+          <Button text="Filter Aliens" currywurstFunktion={showAliens} />
+          <Button text="Show All" currywurstFunktion={showAll} />
+        </ButtonWrapper>
         {data.map(({ name, species, origin, image, id }) => (
           <Cards
             key={id}
@@ -142,4 +144,14 @@ const Logo = styled.img`
   // margin-right: 10%;
   // width: 0 auto;
   width: 300px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
+  background: none;
+  opacity: 1;
+  height: 30px;
+  width: auto;
+  border-radius: 10px;
 `;
