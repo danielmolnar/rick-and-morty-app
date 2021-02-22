@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const Search = ({ getQuery }) => {
   //1. Dem Inputfeld einen State zuweisen
@@ -13,10 +14,10 @@ const Search = ({ getQuery }) => {
 
   return (
     <section>
-      <form>
-        <input
+      <Formstyler>
+        <Inputstyler
           type="text"
-          placeholder="Search for Human or Alien"
+          placeholder="Search for Character"
           value={text} //text von useState s.o.
           onChange={(e) => onChange(e.target.value)}
           // 2. Wird beim tippen ausgelöst und der Wert in der Klammer geht in Value
@@ -25,9 +26,23 @@ const Search = ({ getQuery }) => {
           // wird oben eine Funktion "const onChange" angelegt
           autoFocus
         />
-      </form>
+      </Formstyler>
     </section>
   );
 };
 
 export default Search;
+
+const Inputstyler = styled.input`
+  width: 350px;
+  border: none;
+  background-color: limegreen;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  text-align: center;
+`;
+
+const Formstyler = styled.form`
+  color: white;
+`;
