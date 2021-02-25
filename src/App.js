@@ -13,6 +13,8 @@ import {
 
 import HeaderNavigation from './components/HeaderNavigation'
 import Characters from './pages/Characters.js';
+import Episodes from './pages/Episodes.js';
+import Home from './pages/Home.js';
 
 
 function App() {
@@ -26,7 +28,17 @@ function App() {
       </Header>
 
       <Wrapper className="App">
-        <Characters />
+        <Switch>
+          <Route path="/pages/Characters">
+            <Characters />
+          </Route>
+          <Route path="/pages/Episodes">
+            <Episodes />
+          </Route>
+          <Route exact path="/pages/">
+            <Home />
+          </Route>
+        </Switch>
       </Wrapper>
     </>
   );

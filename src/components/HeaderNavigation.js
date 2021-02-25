@@ -10,7 +10,7 @@ import {
 export default function HeaderNavigation() {
     return (
         <nav>
-            <NavLink exact to="/">Home</NavLink>
+            <NavLink exact to="../pages/">Home</NavLink>
             <NavLink to="../pages/characters">Characters</NavLink>
             <NavLink to="../pages/episodes">Episodes</NavLink>
         </nav>
