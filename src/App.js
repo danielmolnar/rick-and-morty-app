@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import header from './img/logo.png';
 import Search from './components/Search';
 import axios from 'axios';
+import HeaderNavigation from './components/HeaderNavigation'
 import {
   Switch,
   Route,
@@ -13,7 +14,6 @@ import {
   useParams,
   useRouteMatch
 } from "react-router-dom";
-import HeaderNavigation from './HeaderNavigation.js';
 
 function App() {
   const [cardInfos, setCardInfos] = useState([]);
@@ -102,7 +102,7 @@ function App() {
     <>
       <Header>
         <Logo src={header} alt="This is the Logo" />
-        {/* <HeaderNavigation></HeaderNavigation> */}
+        <HeaderNavigation />
       </Header>
 
       <Wrapper className="App">
