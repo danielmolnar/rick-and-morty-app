@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import wallpaper from './wallpaper.jpg';
+import wallpaper from './img/wallpaper.jpg';
 import schwifty from './font/schwifty.ttf';
 export default createGlobalStyle`
 

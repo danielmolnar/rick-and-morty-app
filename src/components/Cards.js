@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import card_background from './card_background.jpg';
+import card_background from '../img/card_background.jpg';
 import Button from './Button';
 import { useState } from 'react';
 import CharDetails from './CharDetails';
-// import schwifty from './font/schwifty.ttf';
 
 export default function Cards({
   name,

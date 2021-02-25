@@ -1,10 +1,10 @@
-import Cards from './Cards.js';
+import Cards from './components/Cards.js';
 import styled from 'styled-components';
-import Button from './Button';
+import Button from './components/Button';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import header from '../src/logo.png';
-import Search from './Search';
+import header from './img/logo.png';
+import Search from './components/Search';
 import axios from 'axios';
 
 function App() {
