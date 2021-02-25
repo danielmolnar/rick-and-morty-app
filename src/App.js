@@ -56,13 +56,14 @@ const Wrapper = styled.div`
 
 const Header = styled.header`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   border-radius: 0px 0px 15px 10px;
   overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 100px;
+  /* height: 100px; */
 `;
 
 const Logo = styled.img`
