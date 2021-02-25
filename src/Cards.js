@@ -31,7 +31,7 @@ export default function Cards({
           origin={origin}
           details={isShowingDetails}
         />
-        <Button currywurstFunktion={toggleDetails} text="Show more" />
+        <Button currywurstFunktion={toggleDetails} text={isShowingDetails ? 'Hide Details' : 'Show More'} />
       </TitleWrapper>
     </CardWrapper>
   );

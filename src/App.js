@@ -63,18 +63,18 @@ function App() {
   }
 
   function showAliens() {
-    const alien = cardInfos.filter(
+    const aliens = cardInfos.filter(
       (currywurst) => currywurst.species === 'Alien'
     );
-    setIsAlien(alien);
+    setIsAlien(aliens);
     setIsHuman([]);
   }
 
   let data;
-  let oldAlienData = cardInfos.filter(
+  const oldAlienData = cardInfos.filter(
     (currywurst) => currywurst.species === 'Alien'
   );
-  let oldHumanData = cardInfos.filter(
+  const oldHumanData = cardInfos.filter(
     (currywurst) => currywurst.species === 'Human'
   );
 
