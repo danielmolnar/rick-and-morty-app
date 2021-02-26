@@ -14,18 +14,23 @@ export default function Cards({
   image,
   text,
   currywurstFunktion,
+  isFavorite,
+  onChangeFunction,
 }) {
   const [isShowingDetails, setIsShowingDetails] = useState(false);
 
   function toggleDetails() {
     setIsShowingDetails(!isShowingDetails);
-    console.log('I was clicked');
   }
+
+
+
+
 
   return (
     <CardWrapper>
       <CheckboxWrapper>
-        <FavoriteCheckBox />
+        <FavoriteCheckBox onChangeFunction={onChangeFunction} />
       </CheckboxWrapper>
       <ImageWrapper src={image} alt="this is {name}" />
       <TitleWrapper>

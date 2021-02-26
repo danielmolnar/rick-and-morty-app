@@ -14,6 +14,7 @@ import HeaderNavigation from './components/HeaderNavigation';
 import Characters from './pages/Characters.js';
 import Episodes from './pages/Episodes.js';
 import Home from './pages/Home.js';
+import FavoriteChars from './pages/FavoriteChars'
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
         <Switch>
           <Route path="/pages/Characters">
             <Characters />
+          </Route>
+          <Route path="/pages/FavoriteChars">
+            <FavoriteChars />
           </Route>
           <Route path="/pages/Episodes">
             <Episodes />

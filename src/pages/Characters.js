@@ -12,7 +12,9 @@ export default function Characters() {
   const [isHuman, setIsHuman] = useState([]);
   const [isAlien, setIsAlien] = useState([]);
   const [query, setQuery] = useState('');
+  const [isChecked, setIsChecked] = useState(loadFromLocal('favoriteChars') ?? [])
   //  Query in Fetch einfügen und neuen useState anlegen
+
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -25,21 +27,38 @@ export default function Characters() {
         species: item.species,
         origin: item.origin.name,
         image: item.image,
-        favorite: false,
+
       }));
       console.log(result.data.results);
-      setCardInfos(characters);
+      setCardInfos(characters)
+      console.log(characters);
     };
     fetchItems();
   }, [query]);
 
   useEffect(() => {
-    saveToLocal('Characters', cardInfos);
-  }, [cardInfos]);
+
+    saveToLocal('favoriteChars', isChecked);
+  }, [isChecked]);
 
   //   loadFromLocal('Characters');
 
   // Wenn der Wert query geändert wird, wird der useEffect ausgelöst
+  function toggleCheckbox(idToToggle) {
+    const favouriteCard = cardInfos.filter((card) => (card.id === idToToggle))
+
+    setIsChecked([
+      ...isChecked, ...favouriteCard
+    ])
+
+    /* saveToLocal('favoriteChars', isChecked); */
+
+  }
+
+
+
+
+
 
   function showAll() {
     setIsHuman([]);
@@ -83,6 +102,8 @@ export default function Characters() {
     data = cardInfos;
   }
 
+
+
   return (
     <>
       <Search getQuery={(q) => setQuery(q)} />
@@ -92,13 +113,14 @@ export default function Characters() {
         <Button text="Show All" currywurstFunktion={showAll} />
       </ButtonWrapper>
 
-      {data.map(({ name, species, origin, image, id }) => (
+      {data.map(({ name, species, origin, image, id, isFavorite, onChangeFunction }) => (
         <Cards
           key={id}
           name={name}
           species={species}
           origin={origin}
           image={image}
+          onChangeFunction={() => toggleCheckbox(id)}
         />
       ))}
     </>

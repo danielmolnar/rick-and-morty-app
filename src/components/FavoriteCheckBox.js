@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-export default function FavoriteCheckBox() {
-  const [checked, setChecked] = useState(false);
+export default function FavoriteCheckBox({ onChangeFunction, Cards }) {
+
 
   return (
     <label>
       <input
         type="checkbox"
-        defaultChecked={checked}
-        onChange={() => setChecked(!checked)}
+        onChange={onChangeFunction}
       />
       Favorite
     </label>
   );
 }
+
