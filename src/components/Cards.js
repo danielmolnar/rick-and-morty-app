@@ -4,7 +4,8 @@ import card_background from '../img/card_background.jpg';
 import Button from './Button';
 import { useState } from 'react';
 import CharDetails from './CharDetails';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import FavoriteCheckBox from './FavoriteCheckBox';
 
 export default function Cards({
   name,
@@ -13,16 +14,24 @@ export default function Cards({
   image,
   text,
   currywurstFunktion,
+  isFavorite,
+  onChangeFunction,
 }) {
   const [isShowingDetails, setIsShowingDetails] = useState(false);
 
   function toggleDetails() {
     setIsShowingDetails(!isShowingDetails);
-    console.log('I was clicked');
   }
+
+
+
+
 
   return (
     <CardWrapper>
+      <CheckboxWrapper>
+        <FavoriteCheckBox onChangeFunction={onChangeFunction} />
+      </CheckboxWrapper>
       <ImageWrapper src={image} alt="this is {name}" />
       <TitleWrapper>
         <h2>{name}</h2>
@@ -31,7 +40,10 @@ export default function Cards({
           origin={origin}
           details={isShowingDetails}
         />
-        <Button currywurstFunktion={toggleDetails} text={isShowingDetails ? 'Hide Details' : 'Show More'} />
+        <Button
+          currywurstFunktion={toggleDetails}
+          text={isShowingDetails ? 'Hide Details' : 'Show More'}
+        />
       </TitleWrapper>
     </CardWrapper>
   );
@@ -67,11 +79,13 @@ const TitleWrapper = styled.section`
   border-radius: 10px;
 `;
 
-
+const CheckboxWrapper = styled.div`
+  display: flex;
+`;
 
 Cards.propTypes = {
   name: PropTypes.string,
   species: PropTypes.string,
   origin: PropTypes.string,
   image: PropTypes.string,
-}
+};
