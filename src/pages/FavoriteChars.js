@@ -11,9 +11,13 @@ import loadFromLocal from '../lib/loadFromLocal';
 
 export default function FavoriteChars() {
 
-    const [favouriteCards, setFavouriteCards] = useState(loadFromLocal('favoriteChars'), [])
+    const [favouriteCards, setFavouriteCards] = useState(loadFromLocal('favoriteChars') ?? [])
 
-    useEffect(() => saveToLocal('favoriteChars', favouriteCards), [favouriteCards])
+    /*let newCards = loadFromLocal('favoriteChars') */
+
+    /*  useEffect(() => saveToLocal('favoriteChars', favouriteCards), [favouriteCards]) */
+
+
 
 
 

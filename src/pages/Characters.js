@@ -12,7 +12,7 @@ export default function Characters() {
   const [isHuman, setIsHuman] = useState([]);
   const [isAlien, setIsAlien] = useState([]);
   const [query, setQuery] = useState('');
-  const [isChecked, setIsChecked] = useState([])
+  const [isChecked, setIsChecked] = useState(loadFromLocal('favoriteChars') ?? [])
   //  Query in Fetch einfügen und neuen useState anlegen
 
 
@@ -30,12 +30,14 @@ export default function Characters() {
 
       }));
       console.log(result.data.results);
-      setCardInfos(characters);
+      setCardInfos(characters)
+      console.log(characters);
     };
     fetchItems();
   }, [query]);
 
   useEffect(() => {
+
     saveToLocal('favoriteChars', isChecked);
   }, [isChecked]);
 
@@ -46,9 +48,15 @@ export default function Characters() {
     const favouriteCard = cardInfos.filter((card) => (card.id === idToToggle))
 
     setIsChecked([
-      ...isChecked, { ...favouriteCard }
+      ...isChecked, ...favouriteCard
     ])
+
+    /* saveToLocal('favoriteChars', isChecked); */
+
   }
+
+
+
 
 
 
