@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import styled from 'styled-components';
 
 import React from 'react';
@@ -13,3 +15,8 @@ const ButtonStyler = styled.button`
   color: white;
   font-size: 1.2rem;
 `;
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  currywurstFunktion: PropTypes.func,
+}

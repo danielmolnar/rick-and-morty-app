@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import wallpaper from './wallpaper.jpg';
-import schwifty from './font/schwifty.ttf';
-export default createGlobalStyle`
+import wallpaper from './img/wallpaper.jpg';
+export const GlobalStyles = createGlobalStyle`
 
 * {
   box-sizing: border-box; 
@@ -15,12 +14,6 @@ body {
 
 }
 
-@font-face { 
-  font-family: schwifty; 
-  src: url(${schwifty}) format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  }
 
   h2 {
     font-family: sans-serif;

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import card_background from './card_background.jpg';
+import card_background from '../img/card_background.jpg';
 import Button from './Button';
 import { useState } from 'react';
 import CharDetails from './CharDetails';
-// import schwifty from './font/schwifty.ttf';
+import PropTypes from 'prop-types'
 
 export default function Cards({
   name,
@@ -67,19 +67,11 @@ const TitleWrapper = styled.section`
   border-radius: 10px;
 `;
 
-// const Headline = styled.h2`
-//   font-family: schwifty;
-// `
 
-// @font-face {
-//   font-family: schwifty;
-//   src: url(${schwifty}) format('truetype');
-//   font-weight: normal;
-//   font-style: normal;
-//   }
 
-//   h2 {
-//     font-family: get-schwifty, Helvetica, Arial, sans-serif;;
-//   }
-
-// `;
+Cards.propTypes = {
+  name: PropTypes.string,
+  species: PropTypes.string,
+  origin: PropTypes.string,
+  image: PropTypes.string,
+}
