@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default function FavoriteCheckBox({ onChangeFunction, Cards }) {
+export default function FavoriteCheckBox({ onChangeFunction, CheckboxText }) {
   return (
     <Wrapper>
-      <p>Favorite</p>
+      <p>{CheckboxText}</p>
       <label>
         {' '}
         <>
@@ -16,14 +16,19 @@ export default function FavoriteCheckBox({ onChangeFunction, Cards }) {
   );
 }
 
+FavoriteCheckBox.propTypes = {
+  CheckboxText: PropTypes.string,
+  onChangeFunction: PropTypes.func,
+};
+
 const Wrapper = styled.div`
-  padding: 0;
-  margin: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 1.5rem;
   gap: 0.4rem;
+  margin: 0;
+  margin-right: 1.5rem;
+  padding: 0;
   width: 300px;
 
   p {
@@ -31,36 +36,34 @@ const Wrapper = styled.div`
   }
 
   input {
-    visibility: hidden;
     position: absolute;
+    visibility: hidden;
   }
 
   span {
-    width: 30px;
-    height: 15px;
-    background-color: #828080;
+    background-color: var(--clr-span-pri);
     border-radius: 20px;
     cursor: pointer;
-    position: relative;
     display: block;
+    height: 15px;
+    position: relative;
     transition: 500ms;
+    width: 30px;
   }
 
   span:before {
-    content: '';
-    width: 16px;
-    height: 16px;
-    background: #fff;
-    /* left: 0;
-    top: -1; */
+    background: var(--clr-span-sec);
     border-radius: 50%;
+    box-shadow: var(--bs2);
+    content: '';
+    height: 16px;
     position: absolute;
     transition: 500ms;
-    box-shadow: 0px 1px 3px #111;
+    width: 16px;
   }
 
   input[type='checkbox']:checked ~ span {
-    background: rgba(4, 165, 186, 1);
+    background: var(--clr-bg-checkb);
   }
 
   input[type='checkbox']:checked ~ span:before {

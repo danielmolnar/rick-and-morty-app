@@ -1,37 +1,34 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import episode_background from '../img/episode_background.png';
+import EpisodeBackground from '../assets/EpisodeBackground.png';
 
-export default function EpisodeCards({ number, name, air_date }) {
+export default function EpisodeCards({ number, name }) {
   return (
     <EpisodeWrapper>
-      <OpacityContainer>
-        <h3>
-          Episode {number}: {name}
-        </h3>
-      </OpacityContainer>
+      <h3>
+        Episode {number}: {name}
+      </h3>
     </EpisodeWrapper>
   );
 }
 
+EpisodeCards.propTypes = {
+  number: PropTypes.string,
+  name: PropTypes.string,
+};
+
 const EpisodeWrapper = styled.div`
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(${episode_background});
+  margin-top: 1rem;
+  background-image: url(${EpisodeBackground});
   background-size: cover;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-  color: white;
-  margin-bottom: 0.5rem;
-  width: 330px;
+  box-shadow: var(--bs);
+  color: var(--fc-primary);
   height: 190px;
-`;
-
-const OpacityContainer = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px; */
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  width: 330px;
 `;
