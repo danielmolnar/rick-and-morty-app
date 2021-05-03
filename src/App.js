@@ -19,18 +19,18 @@ function App() {
           NavText4="Episodes"
         />
       </Header>
-      <Wrapper className="App">
+      <Wrapper>
         <Switch>
-          <Route path="/pages/Characters">
+          <Route path="/characters">
             <Characters />
           </Route>
-          <Route path="/pages/FavoriteChars">
+          <Route path="/favorites">
             <FavoriteChars />
           </Route>
-          <Route path="/pages/Episodes">
+          <Route path="/episodes">
             <Episodes />
           </Route>
-          <Route exact path="/pages/">
+          <Route exact path="/">
             <Home />
           </Route>
         </Switch>
