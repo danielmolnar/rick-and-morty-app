@@ -1,4 +1,4 @@
-Main Button 
+###Main Button
 
 ```js
 <Button text="Main Button" />

@@ -1,47 +1,36 @@
 import PropTypes from 'prop-types';
-
 import styled from 'styled-components';
 
-import React from 'react';
-
-export default function Button({ text, currywurstFunktion }) {
+export default function Button({ text, toggleDetails }) {
   return (
     <ButtonStyler>
-      <button onClick={currywurstFunktion}>{text}</button>
+      <button onClick={toggleDetails}>{text}</button>
     </ButtonStyler>
   );
 }
 
+Button.propTypes = {
+  toggleDetails: PropTypes.func,
+  text: PropTypes.string.isRequired,
+};
+
 const ButtonStyler = styled.div`
   button {
+    background-size: 200% auto;
+    background-image: var(--clr-button-rad);
     border: none;
-    text-decoration: none;
-    /* color: white; */
+    border-radius: 10px;
+    color: var(--fc-primary);
+    display: block;
     font-size: 1rem;
-    background-image: linear-gradient(
-      to right,
-      #16a085 0%,
-      #f4d03f 51%,
-      #16a085 100%
-    );
-    /* margin: 10px; */
     padding: 0.3rem;
     text-align: center;
+    text-decoration: none;
     transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    /* box-shadow: 0 0 20px #eee; */
-    border-radius: 10px;
-    display: block;
   }
   button:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
+    background-position: right center;
+    color: var(--fc-primary);
     text-decoration: none;
   }
 `;
-
-Button.propTypes = {
-  text: PropTypes.string.isRequired,
-  currywurstFunktion: PropTypes.func,
-};

@@ -1,32 +1,27 @@
-import React from 'react';
-import styled from 'styled-components';
-import card_background from '../img/card_background.jpg';
-import Button from './Button';
 import { useState } from 'react';
-import CharDetails from './CharDetails';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Button from './Button';
+import CharDetails from './CharDetails';
 import FavoriteCheckBox from './FavoriteCheckBox';
+import CardBackground from '../assets/CardBackground.jpg';
 
 export default function Cards({
   name,
-  species,
-  origin,
   image,
-  text,
-  currywurstFunktion,
-  isFavorite,
+  origin,
+  species,
   onChangeFunction,
 }) {
   const [isShowingDetails, setIsShowingDetails] = useState(false);
 
-  function toggleDetails() {
-    setIsShowingDetails(!isShowingDetails);
-  }
-
   return (
     <CardWrapper>
       <CheckboxWrapper>
-        <FavoriteCheckBox onChangeFunction={onChangeFunction} />
+        <FavoriteCheckBox
+          onChangeFunction={onChangeFunction}
+          CheckboxText="Favorite"
+        />
       </CheckboxWrapper>
       <ImageWrapper src={image} alt="this is {name}" />
       <TitleWrapper>
@@ -37,7 +32,7 @@ export default function Cards({
           details={isShowingDetails}
         />
         <Button
-          currywurstFunktion={toggleDetails}
+          toggleDetails={() => setIsShowingDetails(!isShowingDetails)}
           text={isShowingDetails ? 'Hide Details' : 'Show More'}
         />
       </TitleWrapper>
@@ -45,21 +40,25 @@ export default function Cards({
   );
 }
 
+Cards.propTypes = {
+  name: PropTypes.string,
+  image: PropTypes.string,
+  origin: PropTypes.string,
+  species: PropTypes.string,
+  onChangeFunction: PropTypes.func,
+};
+
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // border: black solid 1px;
-  background-image: url(${card_background});
+  background-image: url(${CardBackground});
   background-size: cover;
-
-  color: white;
   border-radius: 10px;
+  box-shadow: var(--bs);
+  color: var(--fc-primary);
   padding: 1rem;
-  /* margin-left: 10%;
-  margin-right: 10%; */
   width: 330px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 `;
 
 const ImageWrapper = styled.img`
@@ -71,7 +70,7 @@ const TitleWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(48, 142, 10, 0.2);
+  background-color: var(--clr-bg-opac);
   margin-top: 1rem;
   padding: 1rem;
   width: 330px;
@@ -80,10 +79,3 @@ const TitleWrapper = styled.section`
 const CheckboxWrapper = styled.div`
   display: flex;
 `;
-
-Cards.propTypes = {
-  name: PropTypes.string,
-  species: PropTypes.string,
-  origin: PropTypes.string,
-  image: PropTypes.string,
-};

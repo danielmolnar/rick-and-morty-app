@@ -1,5 +1,5 @@
-CharDetails 
+###CharDetails
 
 ```js
-<CharDetails species="text" origin="human"/>
+<CharDetails species="text" origin="human" />
 ```

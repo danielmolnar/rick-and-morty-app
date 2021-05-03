@@ -1,4 +1,4 @@
-Sample Card
+###Sample Card
 
 ```js
 const exampleCard = {
@@ -7,7 +7,7 @@ const exampleCard = {
   origin: "Earth",
   image: 'https://bit.ly/3ss77mx',
   text: "Button Text",
-} 
+}
 
 <Card name={exampleCard.name}/>
 ```

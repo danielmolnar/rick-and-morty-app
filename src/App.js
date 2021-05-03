@@ -1,29 +1,24 @@
 import styled from 'styled-components';
-import React from 'react';
-import header from './img/logo.png';
-
-import {
-  Switch,
-  Route,
-  NavLink,
-  useParams,
-  useRouteMatch,
-} from 'react-router-dom';
-
-import HeaderNavigation from './components/HeaderNavigation';
-import Characters from './pages/Characters.js';
-import Episodes from './pages/Episodes.js';
+import header from './assets/Logo.png';
+import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home.js';
+import Episodes from './pages/Episodes.js';
+import Characters from './pages/Characters.js';
 import FavoriteChars from './pages/FavoriteChars';
+import HeaderNavigation from './components/HeaderNavigation';
 
 function App() {
   return (
     <>
       <Header>
-        <Logo src={header} alt="This is the Logo" />
-        <HeaderNavigation />
+        <Logo src={header} alt="Rick and morty dashing out of a portal" />
+        <HeaderNavigation
+          NavText1="Home"
+          NavText2="Characters"
+          NavText3="Favorites"
+          NavText4="Episodes"
+        />
       </Header>
-
       <Wrapper className="App">
         <Switch>
           <Route path="/pages/Characters">
@@ -48,29 +43,21 @@ export default App;
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 330px;
+  flex-direction: column;
   gap: 1rem;
   margin: 0 auto;
+  width: 330px;
 `;
 
 const Header = styled.header`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border-radius: 0px 0px 15px 10px;
-  /* background-color: rgba(0, 0, 0, 0.2); */
-  /* overflow: hidden;
-  position: fixed;
-  top: 0; */
+  flex-direction: column;
   width: 100%;
-  /* height: 100px; */
 `;
 
 const Logo = styled.img`
-  // margin-left: 10%;
-  // margin-right: 10%;
-  // width: 0 auto;
   width: 175px;
+  object-fit: contain;
 `;

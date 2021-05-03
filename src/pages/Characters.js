@@ -1,10 +1,10 @@
-import styled from 'styled-components';
 import axios from 'axios';
+import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import saveToLocal from '../lib/saveToLocal';
 import Button from '../components/Button';
-import Cards from '../components/Cards.js';
 import Search from '../components/Search';
+import Cards from '../components/Cards.js';
 import loadFromLocal from '../lib/loadFromLocal';
 
 export default function Characters() {
@@ -15,7 +15,6 @@ export default function Characters() {
   const [isChecked, setIsChecked] = useState(
     loadFromLocal('favoriteChars') ?? []
   );
-  //  Query in Fetch einfügen und neuen useState anlegen
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -24,14 +23,12 @@ export default function Characters() {
       );
       const characters = result.data.results.map((item) => ({
         id: item.id,
-        name: item.name,
-        species: item.species,
-        origin: item.origin.name,
         image: item.image,
+        name: item.name,
+        origin: item.origin.name,
+        species: item.species,
       }));
-      console.log(result.data.results);
       setCardInfos(characters);
-      console.log(characters);
     };
     fetchItems();
   }, [query]);
@@ -40,15 +37,9 @@ export default function Characters() {
     saveToLocal('favoriteChars', isChecked);
   }, [isChecked]);
 
-  //   loadFromLocal('Characters');
-
-  // Wenn der Wert query geändert wird, wird der useEffect ausgelöst
   function toggleCheckbox(idToToggle) {
     const favouriteCard = cardInfos.filter((card) => card.id === idToToggle);
-
     setIsChecked([...isChecked, ...favouriteCard]);
-
-    /* saveToLocal('favoriteChars', isChecked); */
   }
 
   function showAll() {
@@ -58,28 +49,20 @@ export default function Characters() {
   }
 
   function showHumans() {
-    const humans = cardInfos.filter(
-      (currywurst) => currywurst.species === 'Human'
-    );
+    const humans = cardInfos.filter((human) => human.species === 'Human');
     setIsHuman(humans);
     setIsAlien([]);
   }
 
   function showAliens() {
-    const alien = cardInfos.filter(
-      (currywurst) => currywurst.species === 'Alien'
-    );
+    const alien = cardInfos.filter((alien) => alien.species === 'Alien');
     setIsAlien(alien);
     setIsHuman([]);
   }
 
   let data;
-  let oldAlienData = cardInfos.filter(
-    (currywurst) => currywurst.species === 'Alien'
-  );
-  let oldHumanData = cardInfos.filter(
-    (currywurst) => currywurst.species === 'Human'
-  );
+  let oldAlienData = cardInfos.filter((data) => data.species === 'Alien');
+  let oldHumanData = cardInfos.filter((data) => data.species === 'Human');
 
   if (isHuman.length > 0) {
     data = isHuman;
@@ -95,33 +78,26 @@ export default function Characters() {
 
   return (
     <>
-      <Search getQuery={(q) => setQuery(q)} />
+      <Search
+        getQuery={(q) => setQuery(q)}
+        placeholder="Search for Character"
+      />
       <ButtonWrapper>
-        <Button text="Filter Humans" currywurstFunktion={showHumans} />
-        <Button text="Filter Aliens" currywurstFunktion={showAliens} />
-        <Button text="Show All" currywurstFunktion={showAll} />
+        <Button text="Filter Humans" toggleDetails={showHumans} />
+        <Button text="Filter Aliens" toggleDetails={showAliens} />
+        <Button text="Show All" toggleDetails={showAll} />
       </ButtonWrapper>
 
-      {data.map(
-        ({
-          name,
-          species,
-          origin,
-          image,
-          id,
-          isFavorite,
-          onChangeFunction,
-        }) => (
-          <Cards
-            key={id}
-            name={name}
-            species={species}
-            origin={origin}
-            image={image}
-            onChangeFunction={() => toggleCheckbox(id)}
-          />
-        )
-      )}
+      {data.map(({ name, species, origin, image, id }) => (
+        <Cards
+          image={image}
+          key={id}
+          name={name}
+          onChangeFunction={() => toggleCheckbox(id)}
+          origin={origin}
+          species={species}
+        />
+      ))}
     </>
   );
 }
@@ -129,8 +105,8 @@ export default function Characters() {
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-around;
+  border-radius: 10px;
   gap: 0.3rem;
   height: 30px;
-  border-radius: 10px;
   width: 330px;
 `;

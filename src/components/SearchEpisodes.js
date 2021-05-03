@@ -1,81 +1,60 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const SearchEpisodes = ({ getQuery }) => {
-  //1. Dem Inputfeld einen State zuweisen
+const SearchEpisodes = ({ getQuery, placeholder }) => {
   const [text, setText] = useState('');
 
   const onChange = (q) => {
-    //5. q steht für den Value unten (was immer auch getippt wird)
-    setText(q); //6. setText wird trotzdem aufgerufen nach der Änderung
-    getQuery(q); //7. diese Funktion wird als Prop in der App.js zu "Search hinzugefügt"
-    //diese Prop "getQuery" wir anschließend oben in die Funktion Search() eingefügt
+    setText(q);
+    getQuery(q);
   };
 
   return (
-    <SectionWrapper>
-      <Formstyler>
-        <Inputstyler
-          type="text"
-          placeholder="Search for Episode"
-          value={text} //text von useState s.o.
-          onChange={(e) => onChange(e.target.value)}
-          // 2. Wird beim tippen ausgelöst und der Wert in der Klammer geht in Value
-          // 3. Query in Fetch einfügen und neuen useState anlegen
-          // 4. onChange war zurvor setText(e.target.value), zum hochreichen zur App.js
-          // wird oben eine Funktion "const onChange" angelegt
-          autoFocus
-        />
-      </Formstyler>
-    </SectionWrapper>
+    <Formstyler>
+      <Inputstyler
+        type="text"
+        placeholder={placeholder}
+        value={text}
+        onChange={(e) => onChange(e.target.value)}
+        autoFocus
+      />
+    </Formstyler>
   );
 };
 
 export default SearchEpisodes;
 
+SearchEpisodes.propTypes = {
+  getQuery: PropTypes.func,
+  placeHolder: PropTypes.string,
+};
+
 const Inputstyler = styled.input`
-  width: 330px; /*
-  border: none;
-  background-color: limegreen;
-  color: white;
-  font-size: 1rem;
-  border-radius: 5px;
-  text-align: center; */
+  width: 330px;
 `;
 
 const Formstyler = styled.form`
   input {
+    background-image: var(--clr-button-rad);
+    background-size: 200% auto;
     border: none;
-    text-decoration: none;
-    /* color: white; */
+    border-radius: 10px;
+    color: var(--fc-primary);
+    display: block;
     font-size: 1rem;
-    background-image: linear-gradient(
-      to right,
-      #16a085 0%,
-      #f4d03f 51%,
-      #16a085 100%
-    );
-    /* margin: 10px; */
     padding: 0.3rem;
     text-align: center;
+    text-decoration: none;
     transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    /* box-shadow: 0 0 20px #eee; */
-    border-radius: 10px;
-    display: block;
   }
   input:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
+    background-position: right center;
+    color: var(--fc-primary);
     text-decoration: none;
   }
 
   input:focus {
     outline: none;
   }
-`;
-
-const SectionWrapper = styled.section`
-  /* color: white; */
 `;
