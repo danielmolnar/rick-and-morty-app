@@ -10,12 +10,12 @@ export default function HeaderNavigation({
 }) {
   return (
     <NavContainer>
-      <NavLink exact to="../pages/">
+      <NavLink exact to="/">
         {NavText1}
       </NavLink>
-      <NavLink to="../pages/characters">{NavText2}</NavLink>
-      <NavLink to="../pages/FavoriteChars">{NavText3}</NavLink>
-      <NavLink to="../pages/episodes">{NavText4}</NavLink>
+      <NavLink to="/characters">{NavText2}</NavLink>
+      <NavLink to="/favorites">{NavText3}</NavLink>
+      <NavLink to="/episodes">{NavText4}</NavLink>
     </NavContainer>
   );
 }
